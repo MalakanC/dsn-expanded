@@ -6,4 +6,4 @@ This module aims to provide the ability to roll unique dice for many of the docu
 
 Cast Fireball -> Roll fiery dice
 
-Cast Ice Storm -> roll icey dice
+Cast Ice Storm -> Roll icey dice
