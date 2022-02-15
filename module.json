@@ -1,0 +1,24 @@
+{   
+  "name": "dsn-expanded",   
+  "title": "Dice So Nice - Expanded",   
+  "description": "This module aims to provide the ability to roll unique dice for many of the document types (actor, item, roll table, etc.). Currently only functional with `dnd5e` and items.",
+  "authors": [
+    {
+      "name": "Malakan",
+      "discord": "Malakan#7664"}
+  ],
+  "version": "0.1.0",
+  "compatibleCoreVersion": "9",
+  "scripts": [
+      "./dsn-e.js"
+  ],
+  "dependencies": [
+    {
+      "name": "dice-so-nice"
+    },
+    {
+      "name": "dnd5e",
+      "type": "system"
+    }
+  ]
+}
