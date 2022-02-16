@@ -181,8 +181,23 @@ Hooks.on('ready', async () => {
 
 Hooks.on('diceSoNiceRollStart', async (messageId, context) => {
 
-    // Get document
+    console.log("msg", messageId)
+    console.log("context",context)
+
+    // Get message
     let msg = game.messages.get(messageId);
+
+
+
+
+    // Get Document
+
+    try {
+        let actorId = msg.data.speaker.actor;
+        var thisDoc = game.actors.get(actorId)
+    } catch (error) {
+        // Roll NOT an Actor
+    }
 
     try {
         // Any way to tell at this point the roll's source document type? item vs roll table vs actor?
@@ -190,14 +205,25 @@ Hooks.on('diceSoNiceRollStart', async (messageId, context) => {
         let itemId = msg.data.flags.dnd5e.roll.itemId;   // Only works for items in dndn5e (for now)
         var thisDoc = game.actors.get(actorId).items.get(itemId)
     } catch (error) {
-        // The roll is not supported.
+        // Roll NOT an Item
+    }
+
+    try {
+        var thisDoc = game.tables.get(msg.data.flags.core.RollTable)
+    } catch (error) {
+        // Roll NOT a RollTable
+    }
+
+    if(thisDoc == null){
+        // Document not found.
         return
     }
+
 
     // check if a diceSet is present within flags, otherwise stop
     diceSetName = thisDoc.getFlag('dsn-expanded', 'DiceSet')
 
-    if(diceSetName == undefined){return}
+    if(diceSetName == null){return}
 
     // get DiceSetData from 'Dice So Nice!'
 
@@ -216,3 +242,5 @@ Hooks.on('diceSoNiceRollStart', async (messageId, context) => {
 });
 
 Hooks.on("getItemSheetHeaderButtons",addDiceSetButton)
+Hooks.on("getRollTableConfigHeaderButtons", addDiceSetButton)
+Hooks.on("getActorSheetHeaderButtons", addDiceSetButton)
