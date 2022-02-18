@@ -7,7 +7,7 @@
       "name": "Malakan",
       "discord": "Malakan#7664"}
   ],
-  "version": "0.1.0",
+  "version": "0.2.0",
   "compatibleCoreVersion": "9",
   "scripts": [
       "./dsn-e.js"
